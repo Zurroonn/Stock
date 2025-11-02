@@ -224,7 +224,7 @@
       gap: 1.5rem;
     }
 
-    /* CARD nuevo estilo tipo tienda clara */
+    /* CARD tipo tienda clara */
     .product-card {
       background-color: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -293,8 +293,8 @@
     }
 
     .size-pill {
-      background-color: var(--size-bg);
-      color: var(--size-text);
+      background-color: #0f172a;
+      color: #fff;
       border-radius: .6rem;
       padding: .5rem .6rem;
       font-size: .8rem;
@@ -407,7 +407,7 @@
         <input
           id="searchInput"
           type="text"
-          placeholder="Ej: UGG, Sephora, Chestnut..."
+          placeholder="Ej: UGG, Chestnut, Burgundy..."
         />
       </div>
 
@@ -448,53 +448,61 @@
 
   <script>
     // ==========================
-    // DATOS DE PRODUCTO
+    // STOCK REAL ACTUAL
     // ==========================
-    // Cada producto ahora tiene:
-    // - name: nombre
-    // - sku: referencia / código interno (puedes inventar uno corto)
-    // - price: número (sin €)
-    // - img: ruta a la imagen en tu carpeta img/
-    // - sizes: array de {size: "talle", qty: número de pares disponibles}
-    //
     // IMPORTANTE:
-    //   Cambia las imágenes por las tuyas reales (ej: img/ugg-tazz.jpg)
+    // - Cambia "price" al precio real que cobras.
+    // - Cambia "img" al nombre del archivo que subas en /img.
+    // - qty = cuántos pares tienes de esa talla ahora mismo.
 
     const products = [
       {
         name: "UGG Tazz II Slippers Rocky Oak",
-        sku: "TAZZ-ROCKY-38",
-        price: 150,
-        img: "img/tazzrockyoak.avif",
+        sku: "TAZZ-ROCKY",
+        price: 150, // <-- tu precio €
+        img: "img/ugg-rocky-oak.jpg", // súbela como img/ugg-rocky-oak.jpg
         sizes: [
-          { size: "38", qty: 1 }
-        ]
-      },
-      {
-        name: "Calendario Sephora",
-        sku: "SEPH-2025",
-        price: 120,
-        img: "img/sephora-1.jpg",
-        sizes: [
-          { size: "Único", qty: 2 }
-        ]
-      },
-      {
-        name: "Calendario Sephora",
-        sku: "SEPH-2025-B",
-        price: 120,
-        img: "img/sephora-2.jpg",
-        sizes: [
-          { size: "Único", qty: 1 }
+          { size: "38", qty: 1 },
+          { size: "39", qty: 1 }
         ]
       },
       {
         name: "UGG Lowmel Chestnut",
-        sku: "LOWMEL-CHEST-38",
-        price: 145,
-        img: "img/ugg-lowmel.jpg",
+        sku: "LOWMEL-CHESTNUT",
+        price: 145, // <-- tu precio €
+        img: "img/ugg-lowmel-chestnut.jpg",
         sizes: [
-          { size: "38", qty: 1 }
+          { size: "38", qty: 1 },
+          { size: "39", qty: 1 }
+        ]
+      },
+      {
+        name: "UGG Lowmel Sand",
+        sku: "LOWMEL-SAND",
+        price: 145, // <-- tu precio €
+        img: "img/ugg-lowmel-sand.jpg",
+        sizes: [
+          { size: "37", qty: 2 },
+          { size: "38", qty: 2 }
+        ]
+      },
+      {
+        name: "UGG Dusted Cocoa",
+        sku: "UGG-DUSTED-COCOA",
+        price: 150, // <-- tu precio €
+        img: "img/ugg-dusted-cocoa.jpg",
+        sizes: [
+          { size: "37", qty: 1 },
+          { size: "39", qty: 1 }
+        ]
+      },
+      {
+        name: "New Balance Burgundy",
+        sku: "NB-BURGUNDY",
+        price: 130, // <-- tu precio €
+        img: "img/nb-burgundy.jpg",
+        sizes: [
+          { size: "40", qty: 1 }
         ]
       }
     ];
@@ -509,7 +517,7 @@
     const sortBtn = document.getElementById("sortBtn");
     const sortModeLabel = document.getElementById("sortModeLabel");
 
-    // Generar HTML talla + stock tipo "40 (5)"
+    // genera HTML de cada talla con stock
     function renderSizes(sizes) {
       return sizes.map(s => {
         return `
@@ -521,7 +529,7 @@
       }).join("");
     }
 
-    // Generar card con el estilo de tu captura
+    // genera la card estilo tienda blanca (foto, sku, precio, tallas)
     function renderCard(p) {
       return `
         <div class="product-card">
