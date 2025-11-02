@@ -93,12 +93,7 @@
     }
 
     .contact-btn {
-      background: linear-gradient(
-        135deg,
-        rgba(56,189,248,.18) 0%,
-        rgba(30,64,175,.18) 50%,
-        rgba(30,58,138,0) 100%
-      );
+      background: linear-gradient(135deg, rgba(56,189,248,.18) 0%, rgba(30,64,175,.18) 50%, rgba(30,58,138,0) 100%);
       border: 1px solid rgba(56,189,248,.45);
       color: var(--text-main);
       font-size: .8rem;
@@ -127,7 +122,7 @@
       margin: 0 auto;
     }
 
-    /* ZONA DE CONTROLES (BUSCADOR + ORDEN) */
+    /* CONTROLES (buscador + ordenar) */
     .controls-card {
       background-color: var(--bg-surface);
       border: 1px solid var(--border-color);
@@ -142,20 +137,11 @@
       margin-bottom: 2rem;
     }
 
-    .controls-left {
-      flex: 1 1 260px;
-      min-width: 0;
-    }
-
     .store-heading {
       font-size: 1.2rem;
       font-weight: 600;
       color: var(--text-main);
       margin-bottom: .4rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: .5rem;
     }
 
     .update-info {
@@ -169,17 +155,10 @@
       text-decoration: none;
     }
 
-    .controls-right {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
     .field-block {
       display: flex;
       flex-direction: column;
       min-width: 180px;
-      flex: 1 1 auto;
     }
 
     .field-label {
@@ -196,8 +175,6 @@
       padding: .6rem .75rem;
       font-size: .9rem;
       outline: none;
-      line-height: 1.2;
-      width: 100%;
     }
 
     #searchInput:focus {
@@ -221,7 +198,6 @@
       align-items: center;
       justify-content: space-between;
       gap: .5rem;
-      width: 100%;
       min-width: 180px;
       box-shadow: 0 20px 40px rgba(0,0,0,.9);
     }
@@ -236,7 +212,7 @@
       scale: .98;
     }
 
-    /* GRID DE PRODUCTOS / TIENDA */
+    /* GRID DE PRODUCTOS */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(min(260px,100%), 1fr));
@@ -254,7 +230,6 @@
       flex-direction: column;
     }
 
-    /* Etiqueta tipo "Nuevo / Hot" en la esquina */
     .badge-flag {
       position: absolute;
       top: .75rem;
@@ -304,10 +279,8 @@
     }
 
     .prod-name {
-      color: var(--text-main);
       font-size: 1rem;
       font-weight: 600;
-      line-height: 1.3;
     }
 
     .prod-price {
@@ -317,69 +290,74 @@
       background-color: rgba(16,185,129,.08);
       border: 1px solid rgba(16,185,129,.4);
       padding: .35rem .5rem;
-      border-radius: var(--radius-md);
-      line-height: 1.2;
-      min-width: fit-content;
+      border-radius: .5rem;
     }
 
     .meta {
       color: var(--text-soft);
       font-size: .85rem;
       line-height: 1.4;
-      display: flex;
-      flex-direction: column;
-      gap: .3rem;
       margin-bottom: 1rem;
-      flex-grow: 1;
     }
 
-    .meta-line strong {
-      color: var(--text-main);
-      font-weight: 500;
-    }
-
-    /* botón tipo "Comprar / hablar" */
     .buy-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      background: linear-gradient(
-        135deg,
-        rgba(56,189,248,.18) 0%,
-        rgba(30,64,175,.18) 50%,
-        rgba(30,58,138,0) 100%
-      );
+      background: linear-gradient(135deg, rgba(56,189,248,.18) 0%, rgba(30,64,175,.18) 50%, rgba(30,58,138,0) 100%);
       border: 1px solid rgba(56,189,248,.45);
-      border-radius: var(--radius-md);
+      border-radius: .6rem;
       padding: .7rem .9rem;
       font-size: .9rem;
       font-weight: 500;
       color: var(--text-main);
       text-decoration: none;
-      line-height: 1.2;
       box-shadow: 0 20px 40px rgba(0,0,0,.9);
     }
 
-    .buy-sub {
-      display: block;
-      color: var(--accent);
-      font-size: .7rem;
-      font-weight: 400;
-      margin-left: .4rem;
+    /* SECCIÓN CONTACTO */
+    .contact-section {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 30px 60px rgba(0,0,0,.8);
+      margin-top: 3rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* FOOTER */
+    .contact-section h2 {
+      margin-top: 0;
+      color: var(--text-main);
+      font-size: 1.3rem;
+    }
+
+    .contact-section p {
+      color: var(--text-soft);
+      font-size: .95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-section a {
+      display: inline-block;
+      background-color: #1e3a8a;
+      color: white;
+      text-decoration: none;
+      padding: .7rem 1rem;
+      border-radius: .6rem;
+      font-weight: 500;
+      border: 1px solid rgba(56,189,248,.45);
+    }
+
     footer {
       text-align: center;
       color: var(--text-dim);
       font-size: .8rem;
       margin-top: 3rem;
-      line-height: 1.4;
-      max-width: 1200px;
-      padding: 2rem 1rem 4rem;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     footer a {
@@ -398,200 +376,95 @@
           <span>Zurron Store</span>
           <span class="brand-pill">stock real 🔒</span>
         </div>
-        <div class="brand-sub">
-          Sneakers · Cosmética · B2B
-        </div>
+        <div class="brand-sub">Sneakers</div>
       </div>
-
-      <a
-        class="contact-btn"
-        href="https://discordapp.com/users/708697270664691723"
-        target="_blank"
-      >
-        <div>
-          Contacto directo
-          <small>@zurron</small>
-        </div>
-        <span style="font-size:.9rem;">💬</span>
+      <a class="contact-btn" href="https://discordapp.com/users/708697270664691723" target="_blank">
+        Contacto directo <small>@zurron</small>
       </a>
     </div>
   </div>
 
-  <!-- CONTENIDO -->
   <div class="page-wrapper">
-    <!-- CONTROLES -->
+    <!-- Controles -->
     <section class="controls-card">
-      <div class="controls-left">
-        <div class="store-heading">
-          Catálogo disponible
-          <span class="brand-pill" style="background-color:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);color:#fde68a;">
-            ENVÍO 24H 🚀
-          </span>
-        </div>
-
-        <div class="update-info">
-          Última actualización: 02/11/2025<br />
-          Pregunta por lotes / mayorista (<strong>B2B</strong>) en Discord:
-          <a href="https://discordapp.com/users/708697270664691723" target="_blank">@zurron</a>
-        </div>
+      <div>
+        <div class="store-heading">Catálogo disponible</div>
+        <div class="update-info">Actualizado el 02/11/2025</div>
       </div>
-
-      <div class="controls-right">
-        <!-- BUSCADOR -->
-        <div class="field-block">
-          <label for="searchInput" class="field-label">Buscar producto</label>
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Ej: UGG, Sephora, Chestnut..."
-          />
-        </div>
-
-        <!-- ORDEN PRECIO -->
-        <div class="field-block">
-          <label class="field-label">Ordenar por precio</label>
-          <button id="sortBtn">
-            <span>Orden actual:</span>
-            <span class="mode" id="sortModeLabel">Menor → Mayor</span>
-          </button>
-        </div>
+      <div class="field-block">
+        <label class="field-label">Buscar producto</label>
+        <input id="searchInput" type="text" placeholder="Ej: UGG, Sephora..." />
+      </div>
+      <div class="field-block">
+        <label class="field-label">Ordenar por precio</label>
+        <button id="sortBtn"><span>Orden:</span><span class="mode" id="sortModeLabel">Menor → Mayor</span></button>
       </div>
     </section>
 
-    <!-- GRID TIENDA -->
-    <section class="grid" id="productsGrid">
-      <!-- Se rellena con JS -->
+    <!-- Productos -->
+    <section class="grid" id="productsGrid"></section>
+
+    <!-- Contacto -->
+    <section class="contact-section">
+      <h2>¿Buscas algún par o producto concreto?</h2>
+      <p>Si no lo ves en el catálogo, puedes escribirme por Discord y te ayudo a conseguirlo. También puedo avisarte cuando entre stock nuevo.</p>
+      <a href="https://discordapp.com/users/708697270664691723" target="_blank">💬 Contactar en Discord</a>
     </section>
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    © 2025 Zurron · Stock real, no pre-order.<br />
-    B2B / Mayoristas: <a href="https://discordapp.com/users/708697270664691723" target="_blank">@zurron</a><br />
-    Si no ves tu talla, pregúntala igual 👟
+    © 2025 Zurron · Vendedor privado · <a href="https://discordapp.com/users/708697270664691723">@zurron</a>
   </footer>
 
   <script>
-    // ==========================
-    // DATOS DE PRODUCTO
-    // ==========================
-    // Cambia img (ruta dentro de /img),
-    // price (sin símbolo),
-    // badge (lo que aparece arriba a la izquierda de la card),
-    // notes (estado),
-    // size (talla)
     const products = [
-      {
-        name: "UGG Tazz II Slippers Rocky Oak",
-        size: "38",
-        notes: "Nuevo ✅ Caja original",
-        price: 150,
-        img: "img/ugg-tazz.jpg",
-        badge: "HOT 🔥"
-      },
-      {
-        name: "Calendario Sephora",
-        size: "—",
-        notes: "Sellado 🎁",
-        price: 120,
-        img: "img/sephora-1.jpg",
-        badge: "Beauty"
-      },
-      {
-        name: "Calendario Sephora",
-        size: "—",
-        notes: "Sellado 🎁",
-        price: 120,
-        img: "img/sephora-2.jpg",
-        badge: "Beauty"
-      },
-      {
-        name: "UGG Lowmel Chestnut",
-        size: "38",
-        notes: "Nuevo ✅ Caja original",
-        price: 145,
-        img: "img/ugg-lowmel.jpg",
-        badge: "Restock ✅"
-      }
+      { name: "UGG Tazz II Slippers Rocky Oak", size: "38", notes: "Nuevo ✅ Caja original", price: 150, img: "img/tazzrockyoak.avif", badge: "HOT 🔥" },
+      { name: "Calendario Sephora", size: "—", notes: "Sellado 🎁", price: 120, img: "img/sephora-1.jpg", badge: "Beauty" },
+      { name: "Calendario Sephora", size: "—", notes: "Sellado 🎁", price: 120, img: "img/sephora-2.jpg", badge: "Beauty" },
+      { name: "UGG Lowmel Chestnut", size: "38", notes: "Nuevo ✅ Caja original", price: 145, img: "img/ugg-lowmel.jpg", badge: "Restock ✅" }
     ];
 
-    // ==========================
-    // LÓGICA DE FILTRO / ORDEN
-    // ==========================
-    let sortMode = "asc"; // asc = menor→mayor, desc = mayor→menor
-
+    let sortMode = "asc";
     const gridEl = document.getElementById("productsGrid");
     const searchInput = document.getElementById("searchInput");
     const sortBtn = document.getElementById("sortBtn");
     const sortModeLabel = document.getElementById("sortModeLabel");
 
-    // genera el HTML de una card producto
     function renderCard(p) {
       return `
         <div class="card">
           <div class="badge-flag">${p.badge}</div>
-          <div class="card-img-wrap">
-            <img src="${p.img}" alt="${p.name}">
-          </div>
+          <div class="card-img-wrap"><img src="${p.img}" alt="${p.name}"></div>
           <div class="card-body">
             <div class="title-row">
               <div class="prod-name">${p.name}</div>
               <div class="prod-price">€ ${p.price}</div>
             </div>
-
-            <div class="meta">
-              <div class="meta-line"><strong>Talla:</strong> ${p.size}</div>
-              <div class="meta-line"><strong>Estado:</strong> ${p.notes}</div>
-            </div>
-
-            <a
-              class="buy-btn"
-              href="https://discordapp.com/users/708697270664691723"
-              target="_blank"
-            >
-              Hablar para comprar
-              <span class="buy-sub">Discord @zurron</span>
-            </a>
+            <div class="meta"><strong>Talla:</strong> ${p.size}<br><strong>Estado:</strong> ${p.notes}</div>
+            <a class="buy-btn" href="https://discordapp.com/users/708697270664691723" target="_blank">Hablar para comprar</a>
           </div>
-        </div>
-      `;
+        </div>`;
     }
 
     function renderProducts() {
-      const term = searchInput.value.trim().toLowerCase();
-
-      // 1. Filtrar
+      const term = searchInput.value.toLowerCase().trim();
       let filtered = products.filter(p =>
         p.name.toLowerCase().includes(term) ||
         p.notes.toLowerCase().includes(term) ||
         p.size.toLowerCase().includes(term)
       );
 
-      // 2. Ordenar por precio
-      filtered.sort((a, b) => {
-        if (sortMode === "asc") {
-          return a.price - b.price;
-        } else {
-          return b.price - a.price;
-        }
-      });
-
-      // 3. Pintar
+      filtered.sort((a, b) => sortMode === "asc" ? a.price - b.price : b.price - a.price);
       gridEl.innerHTML = filtered.map(renderCard).join("");
     }
 
-    // cambiar orden al clickar
     sortBtn.addEventListener("click", () => {
       sortMode = sortMode === "asc" ? "desc" : "asc";
-      sortModeLabel.textContent =
-        sortMode === "asc" ? "Menor → Mayor" : "Mayor → Menor";
+      sortModeLabel.textContent = sortMode === "asc" ? "Menor → Mayor" : "Mayor → Menor";
       renderProducts();
     });
 
-    // buscar en vivo
     searchInput.addEventListener("input", renderProducts);
-
-    // primer render
     renderProducts();
   </script>
 </body>
