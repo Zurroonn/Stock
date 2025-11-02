@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zurron Store</title>
 
+  <!-- FAVICON (icono de la pestaña) -->
+  <link rel="icon" type="image/png" href="img/logo-modofied.png" />
+
   <style>
     :root {
       --bg-page: #0f172a;
@@ -61,6 +64,12 @@
       gap: .75rem;
     }
 
+    .navbar-left {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+    }
+
     .brand-block {
       display: flex;
       flex-direction: column;
@@ -93,8 +102,43 @@
       font-weight: 400;
     }
 
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* logo arriba derecha */
+    .logo-bubble {
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.15) 0%, rgba(0,0,0,0) 70%);
+      background-color: rgba(15,23,42,.6);
+      border: 1px solid rgba(148,163,184,.3);
+      box-shadow: 0 20px 40px rgba(0,0,0,.9);
+      border-radius: 999px;
+      height: 40px;
+      width: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 999px;
+    }
+
     .contact-btn {
-      background: linear-gradient(135deg, rgba(56,189,248,.18) 0%, rgba(30,64,175,.18) 50%, rgba(30,58,138,0) 100%);
+      background: linear-gradient(
+        135deg,
+        rgba(56,189,248,.18) 0%,
+        rgba(30,64,175,.18) 50%,
+        rgba(30,58,138,0) 100%
+      );
       border: 1px solid rgba(56,189,248,.45);
       color: var(--text-main);
       font-size: .8rem;
@@ -376,16 +420,27 @@
   <!-- NAVBAR -->
   <div class="navbar-wrap">
     <div class="navbar">
-      <div class="brand-block">
-        <div class="brand-name">
-          <span>Zurron Store</span>
-          <span class="brand-pill">stock real 🔒</span>
+      <!-- IZQUIERDA: texto marca -->
+      <div class="navbar-left">
+        <div class="brand-block">
+          <div class="brand-name">
+            <span>Zurron Store</span>
+            <span class="brand-pill">stock real 🔒</span>
+          </div>
+          <div class="brand-sub">Sneakers · Cosmética</div>
         </div>
-        <div class="brand-sub">Sneakers · Cosmética</div>
       </div>
-      <a class="contact-btn" href="https://discordapp.com/users/708697270664691723" target="_blank">
-        Contacto directo <small>@zurron</small>
-      </a>
+
+      <!-- DERECHA: contacto + logo -->
+      <div class="navbar-right">
+        <a class="contact-btn" href="https://discordapp.com/users/708697270664691723" target="_blank">
+          Contacto directo <small>@zurron</small>
+        </a>
+
+        <div class="logo-bubble">
+          <img src="img/logo-modofied.png" alt="Logo Zurron Store" />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -450,17 +505,16 @@
     // ==========================
     // STOCK REAL ACTUAL
     // ==========================
-    // IMPORTANTE:
-    // - Cambia "price" al precio real que cobras.
-    // - Cambia "img" al nombre del archivo que subas en /img.
-    // - qty = cuántos pares tienes de esa talla ahora mismo.
+    // - Ajusta "price" si cambian precios.
+    // - Asegúrate de que las imágenes existen en /img con esos nombres.
+    // - qty = pares disponibles por talla.
 
     const products = [
       {
         name: "UGG Tazz II Slippers Rocky Oak",
         sku: "1174471-RYK",
-        price: 150, // <-- tu precio €
-        img: "img/tazzrockyoak.avif", // súbela como img/ugg-rocky-oak.jpg
+        price: 150,
+        img: "img/tazzrockyoak.avif",
         sizes: [
           { size: "38", qty: 1 },
           { size: "39", qty: 1 }
@@ -469,7 +523,7 @@
       {
         name: "UGG Lowmel Chestnut",
         sku: "1144032-CHE",
-        price: 145, // <-- tu precio €
+        price: 145,
         img: "img/lowmelchestnut.webp",
         sizes: [
           { size: "38", qty: 1 },
@@ -479,7 +533,7 @@
       {
         name: "UGG Lowmel Sand",
         sku: "1144032-SAN",
-        price: 160, // <-- tu precio €
+        price: 160,
         img: "img/lowmelsand.avif",
         sizes: [
           { size: "37", qty: 2 },
@@ -489,7 +543,7 @@
       {
         name: "UGG Dusted Cocoa",
         sku: "1174471-DDC",
-        price: 140, // <-- tu precio €
+        price: 140,
         img: "img/dusted cocoa.webp",
         sizes: [
           { size: "37", qty: 1 },
@@ -499,7 +553,7 @@
       {
         name: "New Balance Burgundy",
         sku: "U9060ZSC",
-        price: 190, // <-- tu precio €
+        price: 190,
         img: "img/nbburgundy.webp",
         sizes: [
           { size: "40", qty: 1 }
