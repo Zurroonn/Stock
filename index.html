@@ -8,19 +8,18 @@
   <style>
     :root {
       --bg-page: #0f172a;
-      --bg-card: #1e2536;
-      --bg-header: #1e2536cc;
-      --bg-surface: #1e293b;
-      --border-color: #2f3b57;
+      --accent: #2563eb;
       --text-main: #f8fafc;
       --text-dim: #94a3b8;
-      --text-soft: #cbd5e1;
-      --accent: #38bdf8;
-      --ok-bg: rgba(16,185,129,.12);
-      --ok-border: rgba(16,185,129,.4);
-      --ok-text: #6ee7b7;
+      --border-color: #2f3b57;
       --radius-lg: 1rem;
       --radius-md: .6rem;
+      --card-bg: #ffffff;
+      --card-border: #d1d5db;
+      --card-text-main: #0f172a;
+      --card-text-dim: #6b7280;
+      --size-bg: #0f172a;
+      --size-text: #fff;
     }
 
     * {
@@ -28,9 +27,11 @@
     }
 
     body {
-      background: radial-gradient(circle at 20% 20%, rgba(56,189,248,.15) 0%, rgba(15,23,42,0) 60%),
-                  radial-gradient(circle at 80% 10%, rgba(168,85,247,.12) 0%, rgba(15,23,42,0) 60%),
-                  var(--bg-page);
+      background-color: var(--bg-page);
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(56,189,248,.15) 0%, rgba(15,23,42,0) 60%),
+        radial-gradient(circle at 80% 10%, rgba(168,85,247,.12) 0%, rgba(15,23,42,0) 60%);
+      background-repeat: no-repeat;
       color: var(--text-main);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
       margin: 0;
@@ -44,7 +45,7 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(12px);
-      background-color: var(--bg-header);
+      background-color: rgba(15,23,42,.7);
       border-bottom: 1px solid var(--border-color);
       box-shadow: 0 30px 60px rgba(0,0,0,.8);
     }
@@ -76,9 +77,9 @@
     }
 
     .brand-pill {
-      background-color: var(--ok-bg);
-      border: 1px solid var(--ok-border);
-      color: var(--ok-text);
+      background-color: rgba(16,185,129,.12);
+      border: 1px solid rgba(16,185,129,.4);
+      color: #6ee7b7;
       font-size: .7rem;
       font-weight: 500;
       padding: .2rem .5rem;
@@ -110,12 +111,12 @@
     }
 
     .contact-btn small {
-      color: var(--accent);
+      color: #38bdf8;
       font-size: .7rem;
       font-weight: 400;
     }
 
-    /* CONTENEDOR PRINCIPAL */
+    /* CONTENIDO PRINCIPAL */
     .page-wrapper {
       max-width: 1200px;
       padding: 2rem 1rem 0;
@@ -124,7 +125,7 @@
 
     /* CONTROLES (buscador + ordenar) */
     .controls-card {
-      background-color: var(--bg-surface);
+      background-color: rgba(30,41,59,.6);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
       box-shadow: 0 40px 80px rgba(0,0,0,.8);
@@ -135,6 +136,10 @@
       justify-content: space-between;
       gap: 1rem;
       margin-bottom: 2rem;
+    }
+
+    .controls-left {
+      min-width: 200px;
     }
 
     .store-heading {
@@ -151,7 +156,7 @@
     }
 
     .update-info a {
-      color: var(--accent);
+      color: #38bdf8;
       text-decoration: none;
     }
 
@@ -178,7 +183,7 @@
     }
 
     #searchInput:focus {
-      border-color: var(--accent);
+      border-color: #38bdf8;
       box-shadow: 0 0 12px rgba(56,189,248,.4);
     }
 
@@ -204,7 +209,7 @@
 
     #sortBtn span.mode {
       font-size: .8rem;
-      color: var(--accent);
+      color: #38bdf8;
       font-weight: 400;
     }
 
@@ -212,113 +217,102 @@
       scale: .98;
     }
 
-    /* GRID DE PRODUCTOS */
+    /* GRID PRODUCTOS */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(260px,100%), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(320px,100%), 1fr));
       gap: 1.5rem;
     }
 
-    .card {
-      position: relative;
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
+    /* CARD nuevo estilo tipo tienda clara */
+    .product-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: .75rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,.7);
       overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0,0,0,.9);
+      color: var(--card-text-main);
       display: flex;
       flex-direction: column;
     }
 
-    .badge-flag {
-      position: absolute;
-      top: .75rem;
-      left: .75rem;
-      background-color: var(--ok-bg);
-      border: 1px solid var(--ok-border);
-      color: var(--ok-text);
-      font-size: .7rem;
-      font-weight: 500;
-      padding: .3rem .5rem;
-      border-radius: var(--radius-md);
-      line-height: 1.2;
-      box-shadow: 0 20px 30px rgba(0,0,0,.8);
-    }
-
-    .card-img-wrap {
+    .product-img {
+      background-color: #f8fafc;
+      border-bottom: 1px solid var(--card-border);
       width: 100%;
       aspect-ratio: 4/3;
-      background-color: #0f172a;
-      border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
 
-    .card-img-wrap img {
+    .product-img img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 
-    .card-body {
-      padding: 1rem 1rem .75rem;
+    .product-body {
+      padding: 1rem 1rem 1.25rem;
       display: flex;
       flex-direction: column;
-      flex-grow: 1;
+      gap: .75rem;
     }
 
-    .title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: .5rem;
-      margin-bottom: .75rem;
-    }
-
-    .prod-name {
+    .product-title {
       font-size: 1rem;
       font-weight: 600;
+      color: var(--card-text-main);
+      line-height: 1.3;
+      margin: 0;
     }
 
-    .prod-price {
-      color: #4ade80;
-      font-size: 1rem;
-      font-weight: 600;
-      background-color: rgba(16,185,129,.08);
-      border: 1px solid rgba(16,185,129,.4);
-      padding: .35rem .5rem;
-      border-radius: .5rem;
-    }
-
-    .meta {
-      color: var(--text-soft);
+    .sku-line {
       font-size: .85rem;
+      color: var(--card-text-dim);
       line-height: 1.4;
-      margin-bottom: 1rem;
     }
 
-    .buy-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      background: linear-gradient(135deg, rgba(56,189,248,.18) 0%, rgba(30,64,175,.18) 50%, rgba(30,58,138,0) 100%);
-      border: 1px solid rgba(56,189,248,.45);
+    .price-line {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .sizes-block-title {
+      font-size: .8rem;
+      color: var(--card-text-dim);
+      margin-bottom: .4rem;
+    }
+
+    .sizes-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem .5rem;
+    }
+
+    .size-pill {
+      background-color: var(--size-bg);
+      color: var(--size-text);
       border-radius: .6rem;
-      padding: .7rem .9rem;
-      font-size: .9rem;
+      padding: .5rem .6rem;
+      font-size: .8rem;
       font-weight: 500;
-      color: var(--text-main);
-      text-decoration: none;
-      box-shadow: 0 20px 40px rgba(0,0,0,.9);
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
     }
 
-    /* SECCIÓN CONTACTO */
+    .size-qty {
+      font-size: .75rem;
+      opacity: .8;
+    }
+
+    /* SECCIÓN CONTACTO / BUSCO ALGO */
     .contact-section {
-      background-color: var(--bg-surface);
+      background-color: rgba(30,41,59,.6);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
       box-shadow: 0 30px 60px rgba(0,0,0,.8);
@@ -328,40 +322,51 @@
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
+      color: var(--text-main);
     }
 
     .contact-section h2 {
       margin-top: 0;
-      color: var(--text-main);
       font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-main);
     }
 
     .contact-section p {
-      color: var(--text-soft);
+      color: var(--text-dim);
       font-size: .95rem;
       margin-bottom: 1.5rem;
+      line-height: 1.4;
     }
 
     .contact-section a {
       display: inline-block;
       background-color: #1e3a8a;
-      color: white;
+      color: #fff;
       text-decoration: none;
       padding: .7rem 1rem;
       border-radius: .6rem;
       font-weight: 500;
       border: 1px solid rgba(56,189,248,.45);
+      box-shadow: 0 20px 40px rgba(0,0,0,.9);
+      font-size: .9rem;
     }
 
+    /* FOOTER */
     footer {
       text-align: center;
       color: var(--text-dim);
       font-size: .8rem;
       margin-top: 3rem;
+      line-height: 1.4;
+      max-width: 1200px;
+      padding: 2rem 1rem 4rem;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     footer a {
-      color: var(--accent);
+      color: #38bdf8;
       text-decoration: none;
     }
   </style>
@@ -376,7 +381,7 @@
           <span>Zurron Store</span>
           <span class="brand-pill">stock real 🔒</span>
         </div>
-        <div class="brand-sub">Sneakers</div>
+        <div class="brand-sub">Sneakers · Cosmética</div>
       </div>
       <a class="contact-btn" href="https://discordapp.com/users/708697270664691723" target="_blank">
         Contacto directo <small>@zurron</small>
@@ -384,77 +389,180 @@
     </div>
   </div>
 
+  <!-- CONTENIDO -->
   <div class="page-wrapper">
-    <!-- Controles -->
+
+    <!-- CONTROLES -->
     <section class="controls-card">
-      <div>
+      <div class="controls-left">
         <div class="store-heading">Catálogo disponible</div>
-        <div class="update-info">Actualizado el 02/11/2025</div>
+        <div class="update-info">
+          Actualizado el 02/11/2025<br />
+          Escríbeme por Discord si quieres más fotos o quieres reservar.
+        </div>
       </div>
+
       <div class="field-block">
-        <label class="field-label">Buscar producto</label>
-        <input id="searchInput" type="text" placeholder="Ej: UGG, Sephora..." />
+        <label class="field-label" for="searchInput">Buscar producto</label>
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Ej: UGG, Sephora, Chestnut..."
+        />
       </div>
+
       <div class="field-block">
         <label class="field-label">Ordenar por precio</label>
-        <button id="sortBtn"><span>Orden:</span><span class="mode" id="sortModeLabel">Menor → Mayor</span></button>
+        <button id="sortBtn">
+          <span>Orden:</span>
+          <span class="mode" id="sortModeLabel">Menor → Mayor</span>
+        </button>
       </div>
     </section>
 
-    <!-- Productos -->
-    <section class="grid" id="productsGrid"></section>
-
-    <!-- Contacto -->
-    <section class="contact-section">
-      <h2>¿Buscas algún par o producto concreto?</h2>
-      <p>Si no lo ves en el catálogo, puedes escribirme por Discord y te ayudo a conseguirlo. También puedo avisarte cuando entre stock nuevo.</p>
-      <a href="https://discordapp.com/users/708697270664691723" target="_blank">💬 Contactar en Discord</a>
+    <!-- GRID DE PRODUCTOS -->
+    <section class="grid" id="productsGrid">
+      <!-- Se rellena con JS -->
     </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section">
+      <h2>¿Buscas un par específico?</h2>
+      <p>
+        Si no ves tu talla o quieres un modelo concreto, dime qué estás buscando.
+        Puedo intentar conseguirlo o avisarte cuando entre stock nuevo.
+      </p>
+      <a href="https://discordapp.com/users/708697270664691723" target="_blank">
+        💬 Hablar conmigo en Discord
+      </a>
+    </section>
+
   </div>
 
+  <!-- FOOTER -->
   <footer>
-    © 2025 Zurron · Vendedor privado · <a href="https://discordapp.com/users/708697270664691723">@zurron</a>
+    © 2025 Zurron · Vendedor privado ·
+    <a href="https://discordapp.com/users/708697270664691723" target="_blank">@zurron</a><br />
+    Stock real, sin pre-order.
   </footer>
 
   <script>
+    // ==========================
+    // DATOS DE PRODUCTO
+    // ==========================
+    // Cada producto ahora tiene:
+    // - name: nombre
+    // - sku: referencia / código interno (puedes inventar uno corto)
+    // - price: número (sin €)
+    // - img: ruta a la imagen en tu carpeta img/
+    // - sizes: array de {size: "talle", qty: número de pares disponibles}
+    //
+    // IMPORTANTE:
+    //   Cambia las imágenes por las tuyas reales (ej: img/ugg-tazz.jpg)
+
     const products = [
-      { name: "UGG Tazz II Slippers Rocky Oak", size: "38", notes: "Nuevo ✅ Caja original", price: 150, img: "img/tazzrockyoak.avif", badge: "HOT 🔥" },
-      { name: "Calendario Sephora", size: "—", notes: "Sellado 🎁", price: 120, img: "img/sephora-1.jpg", badge: "Beauty" },
-      { name: "Calendario Sephora", size: "—", notes: "Sellado 🎁", price: 120, img: "img/sephora-2.jpg", badge: "Beauty" },
-      { name: "UGG Lowmel Chestnut", size: "38", notes: "Nuevo ✅ Caja original", price: 145, img: "img/ugg-lowmel.jpg", badge: "Restock ✅" }
+      {
+        name: "UGG Tazz II Slippers Rocky Oak",
+        sku: "TAZZ-ROCKY-38",
+        price: 150,
+        img: "img/tazzrockyoak.avif",
+        sizes: [
+          { size: "38", qty: 1 }
+        ]
+      },
+      {
+        name: "Calendario Sephora",
+        sku: "SEPH-2025",
+        price: 120,
+        img: "img/sephora-1.jpg",
+        sizes: [
+          { size: "Único", qty: 2 }
+        ]
+      },
+      {
+        name: "Calendario Sephora",
+        sku: "SEPH-2025-B",
+        price: 120,
+        img: "img/sephora-2.jpg",
+        sizes: [
+          { size: "Único", qty: 1 }
+        ]
+      },
+      {
+        name: "UGG Lowmel Chestnut",
+        sku: "LOWMEL-CHEST-38",
+        price: 145,
+        img: "img/ugg-lowmel.jpg",
+        sizes: [
+          { size: "38", qty: 1 }
+        ]
+      }
     ];
 
-    let sortMode = "asc";
+    // ==========================
+    // ORDEN / BUSCADOR
+    // ==========================
+    let sortMode = "asc"; // asc = menor→mayor, desc = mayor→menor
+
     const gridEl = document.getElementById("productsGrid");
     const searchInput = document.getElementById("searchInput");
     const sortBtn = document.getElementById("sortBtn");
     const sortModeLabel = document.getElementById("sortModeLabel");
 
+    // Generar HTML talla + stock tipo "40 (5)"
+    function renderSizes(sizes) {
+      return sizes.map(s => {
+        return `
+          <div class="size-pill">
+            <span>${s.size}</span>
+            <span class="size-qty">(${s.qty})</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // Generar card con el estilo de tu captura
     function renderCard(p) {
       return `
-        <div class="card">
-          <div class="badge-flag">${p.badge}</div>
-          <div class="card-img-wrap"><img src="${p.img}" alt="${p.name}"></div>
-          <div class="card-body">
-            <div class="title-row">
-              <div class="prod-name">${p.name}</div>
-              <div class="prod-price">€ ${p.price}</div>
-            </div>
-            <div class="meta"><strong>Talla:</strong> ${p.size}<br><strong>Estado:</strong> ${p.notes}</div>
-            <a class="buy-btn" href="https://discordapp.com/users/708697270664691723" target="_blank">Hablar para comprar</a>
+        <div class="product-card">
+          <div class="product-img">
+            <img src="${p.img}" alt="${p.name}">
           </div>
-        </div>`;
+          <div class="product-body">
+            <div class="product-title">${p.name}</div>
+            <div class="sku-line">SKU: ${p.sku}</div>
+            <div class="price-line">€${p.price.toFixed(2)}</div>
+            <div class="sizes-block">
+              <div class="sizes-block-title">Tallas disponibles:</div>
+              <div class="sizes-wrapper">
+                ${renderSizes(p.sizes)}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
     }
 
     function renderProducts() {
       const term = searchInput.value.toLowerCase().trim();
+
+      // 1. filtrar por búsqueda
       let filtered = products.filter(p =>
         p.name.toLowerCase().includes(term) ||
-        p.notes.toLowerCase().includes(term) ||
-        p.size.toLowerCase().includes(term)
+        p.sku.toLowerCase().includes(term) ||
+        p.sizes.some(s => s.size.toLowerCase().includes(term))
       );
 
-      filtered.sort((a, b) => sortMode === "asc" ? a.price - b.price : b.price - a.price);
+      // 2. ordenar por precio
+      filtered.sort((a, b) => {
+        if (sortMode === "asc") {
+          return a.price - b.price;
+        } else {
+          return b.price - a.price;
+        }
+      });
+
+      // 3. pintar
       gridEl.innerHTML = filtered.map(renderCard).join("");
     }
 
@@ -465,6 +573,8 @@
     });
 
     searchInput.addEventListener("input", renderProducts);
+
+    // primer render
     renderProducts();
   </script>
 </body>
