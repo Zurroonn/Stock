@@ -3,115 +3,214 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stock - Zurron</title>
+  <title>Zurron Store</title>
 
   <style>
     :root {
-      --bg-main: #0f172a;
-      --bg-card: #1e293b;
-      --bg-border: #334155;
+      --bg-page: #0f172a;
+      --bg-card: #1e2536;
+      --bg-header: #1e2536cc;
+      --bg-surface: #1e293b;
+      --border-color: #2f3b57;
       --text-main: #f8fafc;
       --text-dim: #94a3b8;
       --text-soft: #cbd5e1;
       --accent: #38bdf8;
-      --radius-xl: 1rem;
+      --ok-bg: rgba(16,185,129,.12);
+      --ok-border: rgba(16,185,129,.4);
+      --ok-text: #6ee7b7;
+      --radius-lg: 1rem;
+      --radius-md: .6rem;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      background-color: var(--bg-main);
+      background: radial-gradient(circle at 20% 20%, rgba(56,189,248,.15) 0%, rgba(15,23,42,0) 60%),
+                  radial-gradient(circle at 80% 10%, rgba(168,85,247,.12) 0%, rgba(15,23,42,0) 60%),
+                  var(--bg-page);
       color: var(--text-main);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
       margin: 0;
-      padding: 2rem 1rem 4rem;
       line-height: 1.5;
+      padding-bottom: 5rem;
     }
 
+    /* NAVBAR */
+    .navbar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background-color: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 30px 60px rgba(0,0,0,.8);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: .9rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .brand-pill {
+      background-color: var(--ok-bg);
+      border: 1px solid var(--ok-border);
+      color: var(--ok-text);
+      font-size: .7rem;
+      font-weight: 500;
+      padding: .2rem .5rem;
+      border-radius: var(--radius-md);
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: .8rem;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .contact-btn {
+      background: linear-gradient(
+        135deg,
+        rgba(56,189,248,.18) 0%,
+        rgba(30,64,175,.18) 50%,
+        rgba(30,58,138,0) 100%
+      );
+      border: 1px solid rgba(56,189,248,.45);
+      color: var(--text-main);
+      font-size: .8rem;
+      font-weight: 500;
+      padding: .6rem .9rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      line-height: 1.2;
+      box-shadow: 0 20px 40px rgba(0,0,0,.9);
+    }
+
+    .contact-btn small {
+      color: var(--accent);
+      font-size: .7rem;
+      font-weight: 400;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
     .page-wrapper {
-      max-width: 1100px;
+      max-width: 1200px;
+      padding: 2rem 1rem 0;
       margin: 0 auto;
     }
 
-    header {
-      text-align: center;
+    /* ZONA DE CONTROLES (BUSCADOR + ORDEN) */
+    .controls-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 40px 80px rgba(0,0,0,.8);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
       margin-bottom: 2rem;
     }
 
-    header h1 {
-      font-size: 1.9rem;
+    .controls-left {
+      flex: 1 1 260px;
+      min-width: 0;
+    }
+
+    .store-heading {
+      font-size: 1.2rem;
       font-weight: 600;
-      margin: 0 0 .5rem;
+      color: var(--text-main);
+      margin-bottom: .4rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem;
     }
 
-    header .sub {
+    .update-info {
+      font-size: .8rem;
       color: var(--text-dim);
-      font-size: .9rem;
+      line-height: 1.4;
     }
 
-    header .sub a {
+    .update-info a {
       color: var(--accent);
       text-decoration: none;
     }
 
-    /* CONTROLES (buscador + ordenar) */
-    .controls {
+    .controls-right {
       display: flex;
       flex-wrap: wrap;
-      gap: .75rem;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(30,41,59,.6);
-      border: 1px solid var(--bg-border);
-      border-radius: var(--radius-xl);
-      padding: 1rem 1.25rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,.6);
-      margin-bottom: 2rem;
+      gap: 1rem;
     }
 
-    .search-block {
+    .field-block {
       display: flex;
       flex-direction: column;
-      min-width: 220px;
+      min-width: 180px;
+      flex: 1 1 auto;
     }
 
-    .search-label {
+    .field-label {
       color: var(--text-dim);
       font-size: .75rem;
-      margin-bottom: .35rem;
+      margin-bottom: .4rem;
     }
 
     #searchInput {
       background-color: #0f172a;
-      border: 1px solid var(--bg-border);
-      border-radius: .6rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
       color: var(--text-main);
       padding: .6rem .75rem;
       font-size: .9rem;
       outline: none;
+      line-height: 1.2;
+      width: 100%;
     }
 
     #searchInput:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 10px rgba(56,189,248,.4);
-    }
-
-    .sort-block {
-      display: flex;
-      flex-direction: column;
-      min-width: 160px;
-    }
-
-    .sort-label {
-      color: var(--text-dim);
-      font-size: .75rem;
-      margin-bottom: .35rem;
+      box-shadow: 0 0 12px rgba(56,189,248,.4);
     }
 
     #sortBtn {
+      background: radial-gradient(circle at 10% 0%, rgba(96,165,250,.4) 0%, rgba(30,58,138,0) 60%);
       background-color: #1e3a8a;
-      background-image: radial-gradient(circle at 10% 0%, rgba(96,165,250,.4) 0%, rgba(30,58,138,0) 60%);
       border: 1px solid rgba(96,165,250,.4);
-      color: #fff;
-      border-radius: .6rem;
+      color: var(--text-main);
+      border-radius: var(--radius-md);
       padding: .6rem .75rem;
       font-size: .9rem;
       font-weight: 500;
@@ -122,7 +221,9 @@
       align-items: center;
       justify-content: space-between;
       gap: .5rem;
-      min-width: 160px;
+      width: 100%;
+      min-width: 180px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.9);
     }
 
     #sortBtn span.mode {
@@ -135,28 +236,45 @@
       scale: .98;
     }
 
-    /* GRID DE PRODUCTOS */
+    /* GRID DE PRODUCTOS / TIENDA */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(240px,100%), 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(min(260px,100%), 1fr));
+      gap: 1.5rem;
     }
 
     .card {
+      position: relative;
       background-color: var(--bg-card);
-      border: 1px solid var(--bg-border);
-      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: 0 25px 40px rgba(0,0,0,.6);
+      box-shadow: 0 40px 80px rgba(0,0,0,.9);
       display: flex;
       flex-direction: column;
+    }
+
+    /* Etiqueta tipo "Nuevo / Hot" en la esquina */
+    .badge-flag {
+      position: absolute;
+      top: .75rem;
+      left: .75rem;
+      background-color: var(--ok-bg);
+      border: 1px solid var(--ok-border);
+      color: var(--ok-text);
+      font-size: .7rem;
+      font-weight: 500;
+      padding: .3rem .5rem;
+      border-radius: var(--radius-md);
+      line-height: 1.2;
+      box-shadow: 0 20px 30px rgba(0,0,0,.8);
     }
 
     .card-img-wrap {
       width: 100%;
       aspect-ratio: 4/3;
       background-color: #0f172a;
-      border-bottom: 1px solid var(--bg-border);
+      border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -170,10 +288,10 @@
     }
 
     .card-body {
-      padding: 1rem 1rem 1.25rem;
+      padding: 1rem 1rem .75rem;
       display: flex;
       flex-direction: column;
-      gap: .5rem;
+      flex-grow: 1;
     }
 
     .title-row {
@@ -182,6 +300,7 @@
       align-items: flex-start;
       flex-wrap: wrap;
       gap: .5rem;
+      margin-bottom: .75rem;
     }
 
     .prod-name {
@@ -193,13 +312,14 @@
 
     .prod-price {
       color: #4ade80;
-      font-size: .95rem;
+      font-size: 1rem;
       font-weight: 600;
       background-color: rgba(16,185,129,.08);
       border: 1px solid rgba(16,185,129,.4);
-      padding: .25rem .5rem;
-      border-radius: .5rem;
+      padding: .35rem .5rem;
+      border-radius: var(--radius-md);
       line-height: 1.2;
+      min-width: fit-content;
     }
 
     .meta {
@@ -208,25 +328,58 @@
       line-height: 1.4;
       display: flex;
       flex-direction: column;
-      gap: .25rem;
+      gap: .3rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
     }
 
-    .tag-new {
-      display: inline-block;
-      font-size: .7rem;
+    .meta-line strong {
+      color: var(--text-main);
       font-weight: 500;
-      background-color: rgba(16,185,129,.12);
-      border: 1px solid rgba(16,185,129,.4);
-      color: #6ee7b7;
-      padding: .25rem .5rem;
-      border-radius: .4rem;
     }
 
+    /* botón tipo "Comprar / hablar" */
+    .buy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(56,189,248,.18) 0%,
+        rgba(30,64,175,.18) 50%,
+        rgba(30,58,138,0) 100%
+      );
+      border: 1px solid rgba(56,189,248,.45);
+      border-radius: var(--radius-md);
+      padding: .7rem .9rem;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--text-main);
+      text-decoration: none;
+      line-height: 1.2;
+      box-shadow: 0 20px 40px rgba(0,0,0,.9);
+    }
+
+    .buy-sub {
+      display: block;
+      color: var(--accent);
+      font-size: .7rem;
+      font-weight: 400;
+      margin-left: .4rem;
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
       color: var(--text-dim);
       font-size: .8rem;
       margin-top: 3rem;
+      line-height: 1.4;
+      max-width: 1200px;
+      padding: 2rem 1rem 4rem;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     footer a {
@@ -237,101 +390,146 @@
 </head>
 
 <body>
-  <div class="page-wrapper">
-    <!-- HEADER -->
-    <header>
-      <h1>🧢 Stock Zurron</h1>
-      <div class="sub">
-        Actualizado el 02/11/2025 · Contacto Discord:
-        <a href="https://discordapp.com/users/708697270664691723">@zurron</a>
-      </div>
-    </header>
-
-    <!-- CONTROLES -->
-    <section class="controls">
-      <div class="search-block">
-        <label for="searchInput" class="search-label">Buscar producto</label>
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Ej: UGG, Sephora, Chestnut..."
-        />
+  <!-- NAVBAR -->
+  <div class="navbar-wrap">
+    <div class="navbar">
+      <div class="brand-block">
+        <div class="brand-name">
+          <span>Zurron Store</span>
+          <span class="brand-pill">stock real 🔒</span>
+        </div>
+        <div class="brand-sub">
+          Sneakers · Cosmética · B2B
+        </div>
       </div>
 
-      <div class="sort-block">
-        <span class="sort-label">Ordenar por precio</span>
-        <button id="sortBtn">
-          <span>Orden actual:</span>
-          <span class="mode" id="sortModeLabel">Menor → Mayor</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- GRID DE PRODUCTOS -->
-    <section class="grid" id="productsGrid">
-      <!-- Las cards se inyectan con JS -->
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      © 2025 Zurron · 
-      · Discord:
-      <a href="https://discordapp.com/users/708697270664691723">@zurron</a>
-    </footer>
+      <a
+        class="contact-btn"
+        href="https://discordapp.com/users/708697270664691723"
+        target="_blank"
+      >
+        <div>
+          Contacto directo
+          <small>@zurron</small>
+        </div>
+        <span style="font-size:.9rem;">💬</span>
+      </a>
+    </div>
   </div>
+
+  <!-- CONTENIDO -->
+  <div class="page-wrapper">
+    <!-- CONTROLES -->
+    <section class="controls-card">
+      <div class="controls-left">
+        <div class="store-heading">
+          Catálogo disponible
+          <span class="brand-pill" style="background-color:rgba(250,204,21,.12);border:1px solid rgba(250,204,21,.4);color:#fde68a;">
+            ENVÍO 24H 🚀
+          </span>
+        </div>
+
+        <div class="update-info">
+          Última actualización: 02/11/2025<br />
+          Pregunta por lotes / mayorista (<strong>B2B</strong>) en Discord:
+          <a href="https://discordapp.com/users/708697270664691723" target="_blank">@zurron</a>
+        </div>
+      </div>
+
+      <div class="controls-right">
+        <!-- BUSCADOR -->
+        <div class="field-block">
+          <label for="searchInput" class="field-label">Buscar producto</label>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Ej: UGG, Sephora, Chestnut..."
+          />
+        </div>
+
+        <!-- ORDEN PRECIO -->
+        <div class="field-block">
+          <label class="field-label">Ordenar por precio</label>
+          <button id="sortBtn">
+            <span>Orden actual:</span>
+            <span class="mode" id="sortModeLabel">Menor → Mayor</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID TIENDA -->
+    <section class="grid" id="productsGrid">
+      <!-- Se rellena con JS -->
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Zurron · Stock real, no pre-order.<br />
+    B2B / Mayoristas: <a href="https://discordapp.com/users/708697270664691723" target="_blank">@zurron</a><br />
+    Si no ves tu talla, pregúntala igual 👟
+  </footer>
 
   <script>
     // ==========================
-    // DATOS DE PRODUCTOS (EDITA AQUÍ)
+    // DATOS DE PRODUCTO
     // ==========================
-    // IMPORTANTE:
-    // - Cambia "img/xxx.jpg" por el nombre real del archivo que subas a la carpeta img/
-    // - Cambia price a lo que quieras (€). Usa número, sin el signo.
-    // - Puedes duplicar objetos para agregar más productos.
-
+    // Cambia img (ruta dentro de /img),
+    // price (sin símbolo),
+    // badge (lo que aparece arriba a la izquierda de la card),
+    // notes (estado),
+    // size (talla)
     const products = [
       {
         name: "UGG Tazz II Slippers Rocky Oak",
         size: "38",
-        notes: "Nuevo ✅",
-        price: 150, // <-- CAMBIA ESTE PRECIO
-        img: "img/tazzrockyoak.avif"
+        notes: "Nuevo ✅ Caja original",
+        price: 150,
+        img: "img/ugg-tazz.jpg",
+        badge: "HOT 🔥"
       },
       {
         name: "Calendario Sephora",
-        size: "-",
+        size: "—",
         notes: "Sellado 🎁",
-        price: 120, // <-- CAMBIA ESTE PRECIO
-        img: "img/sephora-1.jpg"
+        price: 120,
+        img: "img/sephora-1.jpg",
+        badge: "Beauty"
       },
       {
         name: "Calendario Sephora",
-        size: "-",
+        size: "—",
         notes: "Sellado 🎁",
-        price: 120, // <-- CAMBIA ESTE PRECIO
-        img: "img/sephora-2.jpg"
+        price: 120,
+        img: "img/sephora-2.jpg",
+        badge: "Beauty"
       },
       {
         name: "UGG Lowmel Chestnut",
         size: "38",
-        notes: "Nuevo ✅",
-        price: 145, // <-- CAMBIA ESTE PRECIO
-        img: "img/ugg-lowmel.jpg"
+        notes: "Nuevo ✅ Caja original",
+        price: 145,
+        img: "img/ugg-lowmel.jpg",
+        badge: "Restock ✅"
       }
     ];
 
-    // Estado de orden: "asc" (menor→mayor) o "desc" (mayor→menor)
-    let sortMode = "asc";
+    // ==========================
+    // LÓGICA DE FILTRO / ORDEN
+    // ==========================
+    let sortMode = "asc"; // asc = menor→mayor, desc = mayor→menor
 
     const gridEl = document.getElementById("productsGrid");
     const searchInput = document.getElementById("searchInput");
     const sortBtn = document.getElementById("sortBtn");
     const sortModeLabel = document.getElementById("sortModeLabel");
 
-    // Render de una card individual
+    // genera el HTML de una card producto
     function renderCard(p) {
       return `
         <div class="card">
+          <div class="badge-flag">${p.badge}</div>
           <div class="card-img-wrap">
             <img src="${p.img}" alt="${p.name}">
           </div>
@@ -340,20 +538,29 @@
               <div class="prod-name">${p.name}</div>
               <div class="prod-price">€ ${p.price}</div>
             </div>
+
             <div class="meta">
-              <div><strong>Talla:</strong> ${p.size}</div>
-              <div><strong>Estado:</strong> ${p.notes} <span class="tag-new">stock</span></div>
+              <div class="meta-line"><strong>Talla:</strong> ${p.size}</div>
+              <div class="meta-line"><strong>Estado:</strong> ${p.notes}</div>
             </div>
+
+            <a
+              class="buy-btn"
+              href="https://discordapp.com/users/708697270664691723"
+              target="_blank"
+            >
+              Hablar para comprar
+              <span class="buy-sub">Discord @zurron</span>
+            </a>
           </div>
         </div>
       `;
     }
 
-    // Función para pintar todos los productos según filtro + orden
     function renderProducts() {
       const term = searchInput.value.trim().toLowerCase();
 
-      // 1. Filtrar por buscador
+      // 1. Filtrar
       let filtered = products.filter(p =>
         p.name.toLowerCase().includes(term) ||
         p.notes.toLowerCase().includes(term) ||
@@ -369,11 +576,11 @@
         }
       });
 
-      // 3. Renderizar
+      // 3. Pintar
       gridEl.innerHTML = filtered.map(renderCard).join("");
     }
 
-    // Cambiar el modo de orden cuando tocas el botón
+    // cambiar orden al clickar
     sortBtn.addEventListener("click", () => {
       sortMode = sortMode === "asc" ? "desc" : "asc";
       sortModeLabel.textContent =
@@ -381,10 +588,10 @@
       renderProducts();
     });
 
-    // Filtrado en vivo mientras escribes
+    // buscar en vivo
     searchInput.addEventListener("input", renderProducts);
 
-    // Primer render
+    // primer render
     renderProducts();
   </script>
 </body>
