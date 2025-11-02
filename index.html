@@ -3,115 +3,389 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zurron Stock</title>
+  <title>Stock - Zurron</title>
 
   <style>
+    :root {
+      --bg-main: #0f172a;
+      --bg-card: #1e293b;
+      --bg-border: #334155;
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
+      --text-soft: #cbd5e1;
+      --accent: #38bdf8;
+      --radius-xl: 1rem;
+    }
+
     body {
-      background-color: #0f172a;
-      color: #f8fafc;
+      background-color: var(--bg-main);
+      color: var(--text-main);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
       margin: 0;
-      padding: 2rem;
+      padding: 2rem 1rem 4rem;
       line-height: 1.5;
     }
-    h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .subtitle {
-      text-align: center;
-      color: #94a3b8;
-      margin-bottom: 2rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
+
+    .page-wrapper {
+      max-width: 1100px;
       margin: 0 auto;
     }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin: 0 0 .5rem;
+    }
+
+    header .sub {
+      color: var(--text-dim);
+      font-size: .9rem;
+    }
+
+    header .sub a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* CONTROLES (buscador + ordenar) */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(30,41,59,.6);
+      border: 1px solid var(--bg-border);
+      border-radius: var(--radius-xl);
+      padding: 1rem 1.25rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,.6);
+      margin-bottom: 2rem;
+    }
+
+    .search-block {
+      display: flex;
+      flex-direction: column;
+      min-width: 220px;
+    }
+
+    .search-label {
+      color: var(--text-dim);
+      font-size: .75rem;
+      margin-bottom: .35rem;
+    }
+
+    #searchInput {
+      background-color: #0f172a;
+      border: 1px solid var(--bg-border);
+      border-radius: .6rem;
+      color: var(--text-main);
+      padding: .6rem .75rem;
+      font-size: .9rem;
+      outline: none;
+    }
+
+    #searchInput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(56,189,248,.4);
+    }
+
+    .sort-block {
+      display: flex;
+      flex-direction: column;
+      min-width: 160px;
+    }
+
+    .sort-label {
+      color: var(--text-dim);
+      font-size: .75rem;
+      margin-bottom: .35rem;
+    }
+
+    #sortBtn {
+      background-color: #1e3a8a;
+      background-image: radial-gradient(circle at 10% 0%, rgba(96,165,250,.4) 0%, rgba(30,58,138,0) 60%);
+      border: 1px solid rgba(96,165,250,.4);
+      color: #fff;
+      border-radius: .6rem;
+      padding: .6rem .75rem;
+      font-size: .9rem;
+      font-weight: 500;
+      cursor: pointer;
+      line-height: 1.2;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      min-width: 160px;
+    }
+
+    #sortBtn span.mode {
+      font-size: .8rem;
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    #sortBtn:active {
+      scale: .98;
+    }
+
+    /* GRID DE PRODUCTOS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(240px,100%), 1fr));
+      gap: 1.25rem;
+    }
+
     .card {
-      background-color: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 0.75rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--bg-border);
+      border-radius: var(--radius-xl);
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      box-shadow: 0 25px 40px rgba(0,0,0,.6);
+      display: flex;
+      flex-direction: column;
     }
-    .card img {
+
+    .card-img-wrap {
       width: 100%;
-      display: block;
+      aspect-ratio: 4/3;
+      background-color: #0f172a;
+      border-bottom: 1px solid var(--bg-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .card-body {
-      padding: 1rem;
+      padding: 1rem 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
     }
-    .card-body h3 {
-      margin: 0;
-      font-size: 1.1rem;
-      color: #f8fafc;
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: .5rem;
     }
-    .card-body p {
-      margin: 0.5rem 0;
-      color: #cbd5e1;
-      font-size: 0.9rem;
+
+    .prod-name {
+      color: var(--text-main);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
     }
+
+    .prod-price {
+      color: #4ade80;
+      font-size: .95rem;
+      font-weight: 600;
+      background-color: rgba(16,185,129,.08);
+      border: 1px solid rgba(16,185,129,.4);
+      padding: .25rem .5rem;
+      border-radius: .5rem;
+      line-height: 1.2;
+    }
+
+    .meta {
+      color: var(--text-soft);
+      font-size: .85rem;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+
+    .tag-new {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 500;
+      background-color: rgba(16,185,129,.12);
+      border: 1px solid rgba(16,185,129,.4);
+      color: #6ee7b7;
+      padding: .25rem .5rem;
+      border-radius: .4rem;
+    }
+
     footer {
       text-align: center;
-      color: #475569;
-      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-size: .8rem;
       margin-top: 3rem;
     }
-    a {
-      color: #38bdf8;
+
+    footer a {
+      color: var(--accent);
       text-decoration: none;
     }
   </style>
 </head>
-<body>
-  <h1>🧢 Zurron Stock</h1>
-  <div class="subtitle">Actualizado el 2/11/2025 · Contacto Discord: <a href="https://discordapp.com/users/708697270664691723">@zurron</a></div>
 
-  <div class="grid">
-    <!-- Tarjeta 1 -->
-    <div class="card">
-     <img src="img/tazzrockyoak.avif" alt="UGG Tazz II Slippers Rocky Oak">
-      <div class="card-body">
-        <h3>UGG Tazz II Slippers Rocky Oak</h3>
-        <p>Talle: 38</p>
-        <p>Nuevo ✅</p>
+<body>
+  <div class="page-wrapper">
+    <!-- HEADER -->
+    <header>
+      <h1>🧢 Stock Zurron</h1>
+      <div class="sub">
+        Actualizado el 02/11/2025 · Contacto Discord:
+        <a href="https://discordapp.com/users/708697270664691723">@zurron</a>
       </div>
-    </div>
-    <!-- Tarjeta 2 -->
-    <div class="card">
-      <img src="https://via.placeholder.com/600x400?text=Calendario+Sephora" alt="Calendario Sephora">
-      <div class="card-body">
-        <h3>Calendario Sephora</h3>
-        <p>–</p>
-        <p>Sellado 🎁</p>
+    </header>
+
+    <!-- CONTROLES -->
+    <section class="controls">
+      <div class="search-block">
+        <label for="searchInput" class="search-label">Buscar producto</label>
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Ej: UGG, Sephora, Chestnut..."
+        />
       </div>
-    </div>
-    <!-- Tarjeta 3 (mismo producto repetido) -->
-    <div class="card">
-      <img src="https://via.placeholder.com/600x400?text=Calendario+Sephora" alt="Calendario Sephora">
-      <div class="card-body">
-        <h3>Calendario Sephora</h3>
-        <p>–</p>
-        <p>Sellado 🎁</p>
+
+      <div class="sort-block">
+        <span class="sort-label">Ordenar por precio</span>
+        <button id="sortBtn">
+          <span>Orden actual:</span>
+          <span class="mode" id="sortModeLabel">Menor → Mayor</span>
+        </button>
       </div>
-    </div>
-    <!-- Tarjeta 4 -->
-    <div class="card">
-      <img src="https://via.placeholder.com/600x400?text=UGG+Lowmel+Chestnut" alt="UGG Lowmel Chestnut">
-      <div class="card-body">
-        <h3>UGG Lowmel Chestnut</h3>
-        <p>Talle: 38</p>
-        <p>Nuevo ✅</p>
-      </div>
-    </div>
+    </section>
+
+    <!-- GRID DE PRODUCTOS -->
+    <section class="grid" id="productsGrid">
+      <!-- Las cards se inyectan con JS -->
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      © 2025 Zurron · 
+      · Discord:
+      <a href="https://discordapp.com/users/708697270664691723">@zurron</a>
+    </footer>
   </div>
 
-  <footer>
-    © 2025 Zurron · Discord: <a href="https://discordapp.com/users/708697270664691723">@zurron</a>
-  </footer>
+  <script>
+    // ==========================
+    // DATOS DE PRODUCTOS (EDITA AQUÍ)
+    // ==========================
+    // IMPORTANTE:
+    // - Cambia "img/xxx.jpg" por el nombre real del archivo que subas a la carpeta img/
+    // - Cambia price a lo que quieras (€). Usa número, sin el signo.
+    // - Puedes duplicar objetos para agregar más productos.
+
+    const products = [
+      {
+        name: "UGG Tazz II Slippers Rocky Oak",
+        size: "38",
+        notes: "Nuevo ✅",
+        price: 150, // <-- CAMBIA ESTE PRECIO
+        img: "img/tazzrockyoak.avif"
+      },
+      {
+        name: "Calendario Sephora",
+        size: "-",
+        notes: "Sellado 🎁",
+        price: 120, // <-- CAMBIA ESTE PRECIO
+        img: "img/sephora-1.jpg"
+      },
+      {
+        name: "Calendario Sephora",
+        size: "-",
+        notes: "Sellado 🎁",
+        price: 120, // <-- CAMBIA ESTE PRECIO
+        img: "img/sephora-2.jpg"
+      },
+      {
+        name: "UGG Lowmel Chestnut",
+        size: "38",
+        notes: "Nuevo ✅",
+        price: 145, // <-- CAMBIA ESTE PRECIO
+        img: "img/ugg-lowmel.jpg"
+      }
+    ];
+
+    // Estado de orden: "asc" (menor→mayor) o "desc" (mayor→menor)
+    let sortMode = "asc";
+
+    const gridEl = document.getElementById("productsGrid");
+    const searchInput = document.getElementById("searchInput");
+    const sortBtn = document.getElementById("sortBtn");
+    const sortModeLabel = document.getElementById("sortModeLabel");
+
+    // Render de una card individual
+    function renderCard(p) {
+      return `
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="${p.img}" alt="${p.name}">
+          </div>
+          <div class="card-body">
+            <div class="title-row">
+              <div class="prod-name">${p.name}</div>
+              <div class="prod-price">€ ${p.price}</div>
+            </div>
+            <div class="meta">
+              <div><strong>Talla:</strong> ${p.size}</div>
+              <div><strong>Estado:</strong> ${p.notes} <span class="tag-new">stock</span></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Función para pintar todos los productos según filtro + orden
+    function renderProducts() {
+      const term = searchInput.value.trim().toLowerCase();
+
+      // 1. Filtrar por buscador
+      let filtered = products.filter(p =>
+        p.name.toLowerCase().includes(term) ||
+        p.notes.toLowerCase().includes(term) ||
+        p.size.toLowerCase().includes(term)
+      );
+
+      // 2. Ordenar por precio
+      filtered.sort((a, b) => {
+        if (sortMode === "asc") {
+          return a.price - b.price;
+        } else {
+          return b.price - a.price;
+        }
+      });
+
+      // 3. Renderizar
+      gridEl.innerHTML = filtered.map(renderCard).join("");
+    }
+
+    // Cambiar el modo de orden cuando tocas el botón
+    sortBtn.addEventListener("click", () => {
+      sortMode = sortMode === "asc" ? "desc" : "asc";
+      sortModeLabel.textContent =
+        sortMode === "asc" ? "Menor → Mayor" : "Mayor → Menor";
+      renderProducts();
+    });
+
+    // Filtrado en vivo mientras escribes
+    searchInput.addEventListener("input", renderProducts);
+
+    // Primer render
+    renderProducts();
+  </script>
 </body>
 </html>
